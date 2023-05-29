@@ -10,7 +10,7 @@ const token = new TokenService();
 router.post('/', async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
-      return  res.json({
+        return res.json({
             status: 'err',
             message: 'All fields are required'
         })
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
             });
         }
 
-        const access_token = token.generateToken({ id: user.id, email })
+        const access_token = token.generateToken({ id: user.id, name: user.name, email, role: user.role })
         const { password, ...others } = user._doc;
         return res.status(201).json({
             status: 'success',

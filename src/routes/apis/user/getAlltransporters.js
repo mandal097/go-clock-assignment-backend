@@ -2,7 +2,7 @@ const User = require('../../../models/User');
 
 const router = require('express').Router();
 
-// get list of all manufacturer @http://localhost:5000/api/v1/user/get-all-transporters
+// get list of all transportes @http://localhost:5000/api/v1/user/get-all-transporters
 router.get('/', async (req, res) => {
     try {
         const users = await User.find({ _id: { $nin: [req.payload.id] }, role: "transporter" }).select('-password');
